@@ -4,12 +4,14 @@ import datetime
 import gspread
 import pandas as pd
 import requests
+import random
 
 from bs4 import BeautifulSoup
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 
-from feriadossp import prox_feriado_formatado
+from feriadossp import prox_feriado_formatado, descricao_feriado
+from sugestoessp import sugestao_aleatoria, sugestoes
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
@@ -73,8 +75,10 @@ def telegram_bot():
 
     if message == "/START":
       texto_resposta = "Olá! Seja bem-vindo(a)! \nVocê quer saber quando é o próximo feriado em São Paulo? Digite SIM, caso queira."
-    elif message == "SIM":
-      texto_resposta = f"O próximo feriado é dia {prox_feriado_formatado}. Aproveite para ir a lugares como o Parque Ibirapuera, o museu da Pinacoteca ou passear pela Liberdade."
+     elif message == "/SIM":
+      texto_resposta = f"O próximo feriado é dia {prox_feriado_formatado}. \nVocê gostaria do texto automatizado? Digite /TEXTO, caso queira."
+    elif message == "TEXTO":
+      texto_resposta = f"Título: Aproveite o feriado de {descricao_feriado} em São Paulo! \nTexto: Que tal aproveitar o feriado de {descricao_feriado} em São Paulo? Uma sugestão de atividade é: {sugestao_aleatoria}. Além disso, você também pode aproveitar para {random.choice(sugestoes)} e {random.choice(sugestoes)}.""
     else:
       texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
     nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
