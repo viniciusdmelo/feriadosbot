@@ -87,5 +87,5 @@ def telegram_bot():
 
   #ADICIONA TODAS AS MENSAGENS ENVIADAS NA PLANILHA E ATUALIZADA O ID DO ÚLTIMO UPDATE
 
-    sheet.append_rows(mensagens)
-    sheet.update("A1", lastupdate_id)
+  sheet.append_rows(mensagens)
+  sheet.update("A1", lastupdate_id)
