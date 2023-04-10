@@ -78,7 +78,7 @@ def telegram_bot():
     elif message == "/SIM":
       texto_resposta = f"O próximo feriado é dia {prox_feriado_formatado}. \nVocê gostaria do texto automatizado? Digite /TEXTO, caso queira."
     elif message == "/TEXTO":
-      texto_resposta = f"Título: Aproveite o feriado de {descricao_feriado} em São Paulo! \nTexto: Que tal aproveitar o feriado de {descricao_feriado} em São Paulo? Uma sugestão de atividade é: {sugestao_aleatoria}. Além disso, você também pode aproveitar para {random.choice(sugestoes)} e {random.choice(sugestoes)}.""
+      texto_resposta = f"Título: Aproveite o feriado de {descricao_feriado} em São Paulo! \nTexto: Que tal aproveitar o feriado de {descricao_feriado} em São Paulo? Uma sugestão de atividade é: {sugestao_aleatoria}. Além disso, você também pode aproveitar para {random.choice(sugestoes)} e {random.choice(sugestoes)}."
     else:
       texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
     nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
