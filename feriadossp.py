@@ -7,7 +7,7 @@ import datetime
 url_ano_atual = 'https://www.feriados.com.br/feriados-sao_paulo-sp.php'
 site_ano_atual = requests.get(url_ano_atual)
 conteudo_ano_atual = site_ano_atual.content
-html_feriados_ano_atual = BeautifulSoup(conteudo_ano_atual)
+html_feriados_ano_atual = BeautifulSoup(conteudo_ano_atual, "html.parser")
 feriados_ano_atual = html_feriados_ano_atual.findAll('span', {'class':'style_lista_feriados'})
 feriados_sp_ano_atual = []
 for data in feriados_ano_atual:
