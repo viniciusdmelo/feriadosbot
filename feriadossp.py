@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import datetime
 
+from oauth2client.service_account import ServiceAccountCredentials
+
 #FAZENDO O SCRAPPING DOS DADOS DO SITE FERIADOS.COM.BR
 url_ano_atual = 'https://www.feriados.com.br/feriados-sao_paulo-sp.php'
 site_ano_atual = requests.get(url_ano_atual)
@@ -39,3 +41,15 @@ descricao_feriado = tabela_final.loc[tabela_final['Data'] == prox_feriado, 'Come
 prox_feriado_formatado = datetime.datetime.strptime(prox_feriado, '%d/%m/%Y').strftime('%d/%m/%Y')
 
 print(f'O próximo feriado é {descricao_feriado}, em {prox_feriado_formatado}.')
+
+
+GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+with open("credenciais.json", mode="w") as arquivo:
+  arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+api = gspread.authorize(conta)
+planilha = api.open_by_key("1zI16LZUgnR-1Xr3MqsjdV6wtyYNMiPpVuxdUVoXYuA4")
+sheet = planilha.worksheet("Pandas")
+
+lista = tabela_final.values.tolist()
+sheet.insert_rows(lista)
