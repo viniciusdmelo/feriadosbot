@@ -9,6 +9,8 @@ from bs4 import BeautifulSoup
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 
+from feriados_sp import prox_feriado_formatado
+
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
