@@ -2,9 +2,9 @@
 
 Esse repositório é um **site automatizado** que possui:
 
-- Robô do Telegram
-- Integração com o Google Sheets
 - Site em Flask
+- Integração com o Google Sheets
+- Robô do Telegram
 
 ## Configuração inicial
 - *Service account* no Google Cloud
