@@ -1,10 +1,11 @@
 import os
 
 import requests
-from bs4 import BeautifulSoup
+import gspread
 import pandas as pd
 import datetime
 
+from bs4 import BeautifulSoup
 from oauth2client.service_account import ServiceAccountCredentials
 
 #FAZENDO O SCRAPPING DOS DADOS DO SITE FERIADOS.COM.BR
