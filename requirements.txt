@@ -1,0 +1,9 @@
+flask
+gunicorn
+update
+bs4
+pandas
+datetime
+requests
+gspread
+oauth2client
