@@ -37,7 +37,7 @@ for linha in datas_comemorativas_ano_atual:
 # CRIAÇÃO DE UM DATAFRAME COM AS DATAS COMEMORATIVAS
 tabela_datas_comemorativas_ano_atual = pd.DataFrame(ajuste_feriados_ano_atual, columns=['Data', 'Comemoração'])
 tabela_final = tabela_datas_comemorativas_ano_atual.drop_duplicates(subset='Data', keep='first').sort_values('Data')
-tabela_final['Data'] = pd.to_datetime(tabela_final['Data'])
+tabela_final['Data'] = pd.to_datetime(tabela_final['Data'], format='%d/%m/%Y')
 
 # AJUSTANDO O FUSO HORÁRIO
 fuso = pytz.timezone('America/Sao_Paulo')
