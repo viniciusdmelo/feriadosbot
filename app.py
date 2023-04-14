@@ -1,3 +1,5 @@
+#IMPORTANDO AS BIBLIOTECAS NECESSÁRIAS
+
 import os
 
 import datetime
@@ -10,18 +12,38 @@ from bs4 import BeautifulSoup
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 
-from feriadossp import prox_feriado_formatado, descricao_feriado
-from sugestoessp import sugestao_aleatoria, sugestoes
+#IMPORTANDO AS INFORMAÇÕES DE FERIADOS
+
+from feriadossp import prox_feriado_formatado_sp, descricao_feriado_sp
+from feriadosrj import prox_feriado_formatado_rj, descricao_feriado_rj
+from feriadospr import prox_feriado_formatado_pr, descricao_feriado_pr
+from feriadospe import prox_feriado_formatado_pe, descricao_feriado_pe
+from feriadosmg import prox_feriado_formatado_mg, descricao_feriado_mg
+from feriadosgo import prox_feriado_formatado_go, descricao_feriado_go
+from feriadosdf import prox_feriado_formatado_df, descricao_feriado_df
+from feriadosce import prox_feriado_formatado_ce, descricao_feriado_ce
+from feriadosba import prox_feriado_formatado_ba, descricao_feriado_ba
+from feriadosam import prox_feriado_formatado_am, descricao_feriado_am
+
+#IMPORTANDO AS SUGESTÕES DE ATIVIDADES
+
+from sugestoessp import sugestao_aleatoria_sp
+from sugestoesrj import sugestao_aleatoria_rj
+from sugestoespr import sugestao_aleatoria_pr
+from sugestoespe import sugestao_aleatoria_pe
+from sugestoesmg import sugestao_aleatoria_mg
+from sugestoesgo import sugestao_aleatoria_go
+from sugestoesdf import sugestao_aleatoria_df
+from sugestoesce import sugestao_aleatoria_ce
+from sugestoesba import sugestao_aleatoria_ba
+from sugestoesam import sugestao_aleatoria_am
+
+#IMPORTANDO AS VARIÁVEIS DE AMBIENTE
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
-GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-with open("credenciais.json", mode="w") as arquivo:
-  arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
-conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
-api = gspread.authorize(conta)
-planilha = api.open_by_key("1zI16LZUgnR-1Xr3MqsjdV6wtyYNMiPpVuxdUVoXYuA4")
-sheet = planilha.worksheet("Resultados")
+
+#CRIANDO O SITE COM MENU PRINCIPAL
 
 app = Flask(__name__)
 
@@ -30,13 +52,19 @@ menu = """
 <br>
 """
 
+#CRIANDO A PÁGINA INICIAL
+
 @app.route("/")
 def index():
   return menu + "Olá, mundo! Esse é um site de automação"
 
+#CRIANDO A PÁGINA SOBRE
+
 @app.route("/sobre")
 def sobre():
    return menu + "Este site foi criado para o trabalho final da disciplina de Algoritmos de Automação, ministrada por Álvaro Justen, no Insper"
+
+#CRIANDO A PÁGINA DE CONTATO
 
 @app.route("/contato")
 def contato():
@@ -48,6 +76,8 @@ def contato():
    <a href="https://twitter.com/viniciusdmelo">Twitter</a>
    """
 
+#CRIANDO O BOT DO TELEGRAM
+
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
     update = request.json
@@ -57,7 +87,9 @@ def telegram_bot():
     if message == "/START":
         texto_resposta = "Olá! Seja bem-vindo(a)! \nVocê quer saber quando é o próximo feriado em São Paulo? Digite SIM, caso queira."
     elif message == "SIM":
-        texto_resposta = f"O próximo feriado é dia {prox_feriado_formatado}. Aproveite para ir a lugares como o Parque Ibirapuera, o museu da Pinacoteca ou passear pela Liberdade."
+        texto_resposta = f"""
+        O próximo feriado é {descricao_feriado_sp}, no dia {prox_feriado_formatado_sp}. Aproveite para {sugestao_aleatoria_sp}, {sugestao_aleatoria_sp} e {sugestao_aleatoria_sp}."
+        """
     else:
         texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
 
