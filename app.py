@@ -27,16 +27,16 @@ from feriadosam import prox_feriado_formatado_am, descricao_feriado_am
 
 #IMPORTANDO AS SUGESTÕES DE ATIVIDADES
 
-from sugestoessp import sugestao_aleatoria_sp
-from sugestoesrj import sugestao_aleatoria_rj
-from sugestoespr import sugestao_aleatoria_pr
-from sugestoespe import sugestao_aleatoria_pe
-from sugestoesmg import sugestao_aleatoria_mg
-from sugestoesgo import sugestao_aleatoria_go
-from sugestoesdf import sugestao_aleatoria_df
-from sugestoesce import sugestao_aleatoria_ce
-from sugestoesba import sugestao_aleatoria_ba
-from sugestoesam import sugestao_aleatoria_am
+from sugestoessp import sugestoes_sp
+from sugestoesrj import sugestoes_rj
+from sugestoespr import sugestoes_pr
+from sugestoespe import sugestoes_pe
+from sugestoesmg import sugestoes_mg
+from sugestoesgo import sugestoes_go
+from sugestoesdf import sugestoes_df
+from sugestoesce import sugestoes_ce
+from sugestoesba import sugestoes_ba
+from sugestoesam import sugestoes_am
 
 #IMPORTANDO AS VARIÁVEIS DE AMBIENTE
 
@@ -88,7 +88,7 @@ def telegram_bot():
         texto_resposta = "Olá! Seja bem-vindo(a)! \nVocê quer saber quando é o próximo feriado em São Paulo? Digite SIM, caso queira."
     elif message == "SIM":
         texto_resposta = f"""
-        O próximo feriado é {descricao_feriado_sp}, no dia {prox_feriado_formatado_sp}. Aproveite para {sugestao_aleatoria_sp}, {sugestao_aleatoria_sp} e {sugestao_aleatoria_sp}."
+        O próximo feriado é {descricao_feriado_sp}, no dia {prox_feriado_formatado_sp}. Aproveite para {random.choice(sugestao_aleatoria_sp)}, {random.choice(sugestao_aleatoria_sp)} e {sugestao_aleatoria_sp}."
         """
     else:
         texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
