@@ -1,6 +1,6 @@
 import random
 
-sugestoes = [
+sugestoes_pr = [
 "conhecer o Jardim Botânico de Curitiba",
 "visitar o Parque Tanguá e apreciar a vista",
 "fazer uma caminhada pelo centro histórico de Curitiba",
@@ -11,4 +11,4 @@ sugestoes = [
 ]
 
 #ESCOLHER UMA SUGESTÃO ALEATORIAMENTE
-sugestao_aleatoria_pr = random.choice(sugestoes)
+sugestao_aleatoria_pr = random.choice(sugestoes_pr)
