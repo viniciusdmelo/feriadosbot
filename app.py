@@ -62,7 +62,7 @@ def telegram_bot():
     texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
 
   nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}    
-  requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   return
   mensagem = {
       "chat_id": TELEGRAM_ADMIN_ID, "text": 
@@ -70,4 +70,3 @@ def telegram_bot():
       Resposta: ({resposta.status_code}) - {resposta.text}
       """
       }
-  resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=mensagem)
