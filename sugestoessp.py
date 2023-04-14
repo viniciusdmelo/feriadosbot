@@ -1,6 +1,6 @@
 import random
 
-sugestoes = [
+sugestoes_sp = [
     "conhecer o Museu de Arte de São Paulo - MASP",
     "visitar o Parque Ibirapuera e faça um piquenique",
     "fazer uma caminhada pela Avenida Paulista",
@@ -11,4 +11,4 @@ sugestoes = [
 ]
 
 # Escolher uma sugestão aleatória
-sugestao_aleatoria = random.choice(sugestoes)
+sugestao_aleatoria = random.choice(sugestoes_sp)
