@@ -82,7 +82,7 @@ def contato():
 def telegram_bot():
     update = request.json
     chat_id = update["message"]["chat"]["id"]
-    message = update["message"]["text"].upper()
+    message = update["message"]["text"].lower()
 
     if message == "/start":
         texto_resposta = "Olá! Seja bem-vindo(a)! \nPara saber quando é o próximo feriado em sua cidade, digite a cidade desejada, como por exemplo: /SaoPaulo, /RioDeJaneiro, /Curitiba, /Recife, /BeloHorizonte, /Goiania, /Brasilia, /Fortaleza, /Salvador ou /Manaus."
