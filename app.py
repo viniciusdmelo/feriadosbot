@@ -102,7 +102,7 @@ def telegram_bot():
             texto_resposta = f"O próximo feriado em Goiânia é {descricao_feriado_go}, no dia {prox_feriado_formatado_go}. Aproveite para {random.choice(sugestoes_go)}, {random.choice(sugestoes_go)} ou {random.choice(sugestoes_go)}."
         elif cidade in ["brasilia", "brasília"]:
             texto_resposta = f"Em Brasília, o próximo feriado é {descricao_feriado_df}, no dia {prox_feriado_formatado_df}. Aproveite para {random.choice(sugestoes_df)}, {random.choice(sugestoes_df)} ou {random.choice(sugestoes_df)}."
-       elif cidade == "fortaleza":
+        elif cidade == "fortaleza":
             texto_resposta = f"Em Fortaleza, o próximo feriado é {descricao_feriado_ce}, no dia {prox_feriado_formatado_ce}. Aproveite para {random.choice(sugestoes_ce)}, {random.choice(sugestoes_ce)} ou {random.choice(sugestoes_ce)}."
         elif cidade == "salvador":
             texto_resposta = f"Em Salvador, o próximo feriado é {descricao_feriado_ba}, no dia {prox_feriado_formatado_ba}. Aproveite para {random.choice(sugestoes_ba)}, {random.choice(sugestoes_ba)} ou {random.choice(sugestoes_ba)}."
