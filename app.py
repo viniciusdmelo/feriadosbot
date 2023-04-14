@@ -52,7 +52,7 @@ def contato():
 def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
-  message = update["message"]["text"]
+  message = update["message"]["text"].upper()
   nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
   
   if message == "/START":
