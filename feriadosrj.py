@@ -48,8 +48,6 @@ prox_feriado = tabela_final.loc[tabela_final['Data'] > pd.Timestamp.now(), 'Data
 descricao_feriado_rj = tabela_final.loc[tabela_final['Data'] == prox_feriado, 'Comemoração'].iloc[0]
 prox_feriado_formatado_rj = prox_feriado.strftime('%d/%m/%Y')
 
-print(f'O próximo feriado é {descricao_feriado_rj}, em {prox_feriado_formatado_rj}.')
-
 #AUTORIZANDO GRAVAR OS DADOS EM UMA PLANILHA NO GOOGLE SHEETS
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
 with open("credenciais.json", mode="w") as arquivo:
