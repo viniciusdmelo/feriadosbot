@@ -84,12 +84,30 @@ def telegram_bot():
     chat_id = update["message"]["chat"]["id"]
     message = update["message"]["text"].upper()
 
-    if message == "/START":
-        texto_resposta = "Olá! Seja bem-vindo(a)! \nVocê quer saber quando é o próximo feriado em São Paulo? Digite SIM, caso queira."
-    elif message == "SIM":
-        texto_resposta = f"""
-        O próximo feriado é {descricao_feriado_sp}, no dia {prox_feriado_formatado_sp}. Aproveite para {random.choice(sugestoes_sp)}, {random.choice(sugestoes_sp)} ou {random.choice(sugestoes_sp)}."
-        """
+    if message == "/start":
+        texto_resposta = "Olá! Seja bem-vindo(a)! \nPara saber quando é o próximo feriado em sua cidade, digite a cidade desejada, como por exemplo: /SaoPaulo, /RioDeJaneiro, /Curitiba, /Recife, /BeloHorizonte, /Goiania, /Brasilia, /Fortaleza, /Salvador ou /Manaus."
+    elif message.startswith("/"):
+        cidade = message[1:].replace(" ", "").replace("-", "").replace(".", "").replace(",", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").replace("â", "a").replace("ê", "e").replace("ô", "o").replace("ã", "a").replace("õ", "o").replace("/", "").lower()
+        if cidade == "saopaulo":
+            texto_resposta = f"O próximo feriado em São Paulo é {descricao_feriado_sp}, no dia {prox_feriado_formatado_sp}. Aproveite para {random.choice(sugestoes_sp)}, {random.choice(sugestoes_sp)} ou {random.choice(sugestoes_sp)}."
+        elif cidade == "riodejaneiro":
+            texto_resposta = f"O próximo feriado no Rio de Janeiro é {descricao_feriado_rj}, no dia {prox_feriado_formatado_rj}. Aproveite para {random.choice(sugestoes_rj)}, {random.choice(sugestoes_rj)} ou {random.choice(sugestoes_rj)}."
+        elif cidade == "curitiba":
+            texto_resposta = f"O próximo feriado em Curitiba é {descricao_feriado_pr}, no dia {prox_feriado_formatado_pr}. Aproveite para {random.choice(sugestoes_pr)}, {random.choice(sugestoes_pr)} ou {random.choice(sugestoes_pr)}."
+        elif cidade == "recife":
+            texto_resposta = f"O próximo feriado em Recife é {descricao_feriado_pe}, no dia {prox_feriado_formatado_pe}. Aproveite para {random.choice(sugestoes_pe)}, {random.choice(sugestoes_pe)} ou {random.choice(sugestoes_pe)}."
+        elif cidade == "belohorizonte":
+            texto_resposta = f"O próximo feriado em Belo Horizonte é {descricao_feriado_mg}, no dia {prox_feriado_formatado_mg}. Aproveite para {random.choice(sugestoes_mg)}, {random.choice(sugestoes_mg)} ou {random.choice(sugestoes_mg)}."
+        elif cidade == "goiania":
+            texto_resposta = f"O próximo feriado em Goiânia é {descricao_feriado_go}, no dia {prox_feriado_formatado_go}. Aproveite para {random.choice(sugestoes_go)}, {random.choice(sugestoes_go)} ou {random.choice(sugestoes_go)}."
+        elif cidade in ["brasilia", "brasília"]:
+            texto_resposta = f"Em Brasília, o próximo feriado é {descricao_feriado_df}, no dia {prox_feriado_formatado_df}. Aproveite para {random.choice(sugestoes_df)}, {random.choice(sugestoes_df)} ou {random.choice(sugestoes_df)}."
+       elif cidade == "fortaleza":
+            texto_resposta = f"Em Fortaleza, o próximo feriado é {descricao_feriado_ce}, no dia {prox_feriado_formatado_ce}. Aproveite para {random.choice(sugestoes_ce)}, {random.choice(sugestoes_ce)} ou {random.choice(sugestoes_ce)}."
+        elif cidade == "salvador":
+            texto_resposta = f"Em Salvador, o próximo feriado é {descricao_feriado_ba}, no dia {prox_feriado_formatado_ba}. Aproveite para {random.choice(sugestoes_ba)}, {random.choice(sugestoes_ba)} ou {random.choice(sugestoes_ba)}."
+        elif cidade == "manaus":
+            texto_resposta = f"Em Manaus, o próximo feriado é {descricao_feriado_am}, no dia {prox_feriado_formatado_am}. Aproveite para {random.choice(sugestoes_am)}, {random.choice(sugestoes_am)} ou {random.choice(sugestoes_am)}."
     else:
         texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
 
