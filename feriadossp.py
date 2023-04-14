@@ -1,8 +1,12 @@
 import os
+
 import requests
 import gspread
 import pandas as pd
 import datetime
+import gspread_dataframe as gsdf
+
+from datetime import datetime
 from bs4 import BeautifulSoup
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -33,25 +37,22 @@ for linha in datas_comemorativas_ano_atual:
 tabela_datas_comemorativas_ano_atual = pd.DataFrame(ajuste_feriados_ano_atual, columns=['Data', 'Comemoração'])
 tabela_final = tabela_datas_comemorativas_ano_atual.drop_duplicates(subset='Data', keep='first').sort_values('Data')
 
-# DESCOBRINDO QUE DIA É HOJE
-today = datetime.date.today().strftime('%d/%m/%Y')
-
 # DESCOBRINDO QUANDO É O PRÓXIMO FERIADO
-prox_feriado = tabela_final.loc[tabela_final['Data'] > today, 'Data'].iloc[0]
+prox_feriado = tabela_final.loc[tabela_final['Data'] > pd.Timestamp.now(), 'Data'].sort_values().iloc[0]
 descricao_feriado = tabela_final.loc[tabela_final['Data'] == prox_feriado, 'Comemoração'].iloc[0]
-prox_feriado_formatado = datetime.datetime.strptime(prox_feriado, '%d/%m/%Y').strftime('%d/%m/%Y')
+prox_feriado_formatado = prox_feriado.strftime('%d/%m/%Y')
 
 print(f'O próximo feriado é {descricao_feriado}, em {prox_feriado_formatado}.')
 
-
+#AUTORIZANDO GRAVAR OS DADOS EM UMA PLANILHA NO GOOGLE SHEETS
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
 with open("credenciais.json", mode="w") as arquivo:
     arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
 conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1zI16LZUgnR-1Xr3MqsjdV6wtyYNMiPpVuxdUVoXYuA4")
-sheet = planilha.worksheet("Pandas")
+sheet = planilha.worksheet("Teste")
 
-lista = tabela_final.values.tolist()
+#GRAVANDO OS DADOS NA PLANILHA)
 sheet.clear()
-sheet.insert_rows(lista)
+gsdf.set_with_dataframe(sheet, tabela_final)
