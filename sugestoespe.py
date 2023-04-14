@@ -1,6 +1,6 @@
 import random
 
-sugestoes = [
+sugestoes_pe = [
 "visitar o Centro Histórico de Recife e conhecer a história da cidade",
 "fazer um passeio de catamarã pelos rios Capibaribe e Beberibe",
 "conhecer o Instituto Ricardo Brennand e suas coleções de arte e armas",
@@ -11,4 +11,4 @@ sugestoes = [
 ]
 
 #ESCOLHER UMA SUGESTÃO ALEATORIAMENTE
-sugestao_aleatoria_pe = random.choice(sugestoes)
+sugestao_aleatoria_pe = random.choice(sugestoes_pe)
