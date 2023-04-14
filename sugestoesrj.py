@@ -1,6 +1,6 @@
 import random
 
-sugestoes = [
+sugestoes_rj = [
 "conhecer o Cristo Redentor no topo do Corcovado",
 "visitar o Pão de Açúcar e apreciar a vista panorâmica da cidade",
 "fazer uma caminhada pela orla de Copacabana",
@@ -11,4 +11,4 @@ sugestoes = [
 ]
 
 #ESCOLHER UMA SUGESTÃO ALEATORIAMENTE
-sugestao_aleatoria_rj = random.choice(sugestoes)
+sugestao_aleatoria_rj = random.choice(sugestoes_rj)
