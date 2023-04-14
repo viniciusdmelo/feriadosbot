@@ -45,10 +45,8 @@ hoje = pd.Timestamp.now(tz=fuso)
 
 # DESCOBRINDO QUANDO É O PRÓXIMO FERIADO
 prox_feriado = tabela_final.loc[tabela_final['Data'] > pd.Timestamp.now(), 'Data'].sort_values().iloc[0]
-descricao_feriado = tabela_final.loc[tabela_final['Data'] == prox_feriado, 'Comemoração'].iloc[0]
-prox_feriado_formatado = prox_feriado.strftime('%d/%m/%Y')
-
-print(f'O próximo feriado é {descricao_feriado}, em {prox_feriado_formatado}.')
+descricao_feriado_mg = tabela_final.loc[tabela_final['Data'] == prox_feriado, 'Comemoração'].iloc[0]
+prox_feriado_formatado_mg = prox_feriado.strftime('%d/%m/%Y')
 
 #AUTORIZANDO GRAVAR OS DADOS EM UMA PLANILHA NO GOOGLE SHEETS
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
