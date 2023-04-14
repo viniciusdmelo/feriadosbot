@@ -53,14 +53,21 @@ def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
   message = update["message"]["text"]
-
+  nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
+  
   if message == "/START":
     texto_resposta = "Olá! Seja bem-vindo(a)! \nVocê quer saber quando é o próximo feriado em São Paulo? Digite SIM, caso queira."
   elif message == "SIM":
     texto_resposta = f"O próximo feriado é dia {prox_feriado_formatado}. Aproveite para ir a lugares como o Parque Ibirapuera, o museu da Pinacoteca ou passear pela Liberdade."
   else:
     texto_resposta = "Não consegui processar sua mensagem. Ainda estou aprendendo :("
-  nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
 
   requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
-  return "ok"
+  return
+  mensagem = {
+      "chat_id": TELEGRAM_ADMIN_ID, "text": 
+      f"""
+      Resposta: ({resposta.status_code}) - {resposta.text}
+      """
+      }
+  resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=mensagem)
