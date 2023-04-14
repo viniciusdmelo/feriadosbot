@@ -5,6 +5,7 @@ import gspread
 import pandas as pd
 import datetime
 import gspread_dataframe as gsdf
+import pytz
 
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -36,6 +37,11 @@ for linha in datas_comemorativas_ano_atual:
 # CRIAÇÃO DE UM DATAFRAME COM AS DATAS COMEMORATIVAS
 tabela_datas_comemorativas_ano_atual = pd.DataFrame(ajuste_feriados_ano_atual, columns=['Data', 'Comemoração'])
 tabela_final = tabela_datas_comemorativas_ano_atual.drop_duplicates(subset='Data', keep='first').sort_values('Data')
+tabela_final['Data'] = pd.to_datetime(tabela_final['Data'])
+
+# AJUSTANDO O FUSO HORÁRIO
+fuso = pytz.timezone('America/Sao_Paulo')
+hoje = pd.Timestamp.now(tz=fuso)
 
 # DESCOBRINDO QUANDO É O PRÓXIMO FERIADO
 prox_feriado = tabela_final.loc[tabela_final['Data'] > pd.Timestamp.now(), 'Data'].sort_values().iloc[0]
