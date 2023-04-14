@@ -55,7 +55,7 @@ with open("credenciais.json", mode="w") as arquivo:
 conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1zI16LZUgnR-1Xr3MqsjdV6wtyYNMiPpVuxdUVoXYuA4")
-sheet = planilha.worksheet("Teste")
+sheet = planilha.worksheet("SP")
 
 #GRAVANDO OS DADOS NA PLANILHA)
 sheet.clear()
