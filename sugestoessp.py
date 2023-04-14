@@ -11,4 +11,4 @@ sugestoes_sp = [
 ]
 
 # Escolher uma sugestão aleatória
-sugestao_aleatoria = random.choice(sugestoes_sp)
+sugestao_aleatoria_sp = random.choice(sugestoes_sp)
